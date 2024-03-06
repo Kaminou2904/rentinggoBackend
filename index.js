@@ -55,8 +55,8 @@ app.post('/form', async (req, res)=>{
         const userMailOptions = {
             from: 'rentinggo1@gmail.com',
             to: req.body.email,
-            subject: 'Confirmation Email',
-            text: 'Thank you very much for placing your order with us!'
+            subject: `Your ${req.body.product} Booking Confirmation`,
+            text: `Dear Customer \n\nYour ${req.body.product} booking is confirmed! 🎉 Thank you for choosing us. If you have any questions, feel free to call us at <a herf="tel:+918451820012">8451820012</a>. \n\nBest regards, \n\nRentingGo`
         }
 
         transporter.sendMail(userMailOptions, function(err, info){
