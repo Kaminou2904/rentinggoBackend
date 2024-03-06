@@ -21,6 +21,7 @@ const formSchema = new mongoose.Schema({
     warranty: {type: String},
     address: {type: String, required: true},
     amount: {type: String, required: true},
+    cate: {type: String, required: true},
     subdate: {type: Date, required: true, default: Date.now}
 });
 
