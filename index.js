@@ -71,7 +71,7 @@ app.post('/form', async (req, res)=>{
             from: 'rentinggo1@gmail.com',
             to: 'rentinggo1@gmail.com',
             subject: 'New Booking',
-            text: 'A new booking has been submitted.\n\nMobile: ' + req.body.mobile + '\nAddress: ' + req.body.address + '\nDate: ' + req.body.date + '\nProduct: ' + req.body.product + '\nCate: ' + req.body.cate
+            text: 'A new booking has been submitted.\n\nNumber: ' + req.body.number + '\nAddress: ' + req.body.address + '\nDate: ' + req.body.date + '\nProduct: ' + req.body.product + '\nCate: ' + req.body.cate
         }
 
         transporter.sendMail(adminMailOptions, function(err, info){
