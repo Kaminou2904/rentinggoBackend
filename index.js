@@ -15,8 +15,10 @@ const formSchema = new mongoose.Schema({
     product: {type: String, required: true},
     email: {type: String, required: true},
     number: {type: String, required: true},
+    period: {type: String},
+    nodays: {type: String},
     date: {type: String, required: true},
-    warranty: {type: String, required: true},
+    warranty: {type: String},
     address: {type: String, required: true},
     amount: {type: String, required: true},
     subdate: {type: Date, required: true, default: Date.now}
@@ -34,13 +36,15 @@ app.get('/', (req, res)=>{
 app.post('/form', async (req, res)=>{
     try {
         const newForm = new form({
-            product: req.body.product,
-            email: req.body.email,
             number: req.body.number,
+            product: req.body.product,
+            amount: req.body.amount,
             date: req.body.date,
             warranty: req.body.warranty,
             address: req.body.address,
-            amount: req.body.amount,
+            email: req.body.email,
+            nodays: req.body.nodays,
+            period: req.body.period,
             subdate: req.body.subdate
         });
         await newForm.save();
@@ -67,11 +71,13 @@ app.post('/form', async (req, res)=>{
             }
         })
 
+        const rentorbuy = req.body.cate === 'buy'? `Warranty: ${req.body.warranty}` : `Rental Period: ${req.body.nodays} ${req.body.period}`
+
         const adminMailOptions = {
             from: 'rentinggo1@gmail.com',
             to: 'rentinggo1@gmail.com',
             subject: 'New Booking',
-            text: 'A new booking has been submitted.\n\nNumber: ' + req.body.number + '\nAddress: ' + req.body.address + '\nDate: ' + req.body.date + '\nProduct: ' + req.body.product + '\nCate: ' + req.body.cate
+            text: `A new booking has been submitted.\n\nNumber: ${req.body.number} \nProduct: ${req.body.product} \nAmount: ${req.body.amount} \nDate: ${req.body.date} \n${rentorbuy} \nAddress: ${req.body.address} \nEmail: ${req.body.email} \nCategory: ${req.body.cate}`
         }
 
         transporter.sendMail(adminMailOptions, function(err, info){
