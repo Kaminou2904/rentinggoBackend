@@ -46,7 +46,8 @@ app.post('/form', async (req, res)=>{
             email: req.body.email,
             nodays: req.body.nodays,
             period: req.body.period,
-            subdate: req.body.subdate
+            subdate: req.body.subdate,
+            cate: req.body.cate
         });
         await newForm.save();
         const transporter = nodemailer.createTransport({
