@@ -54,7 +54,7 @@ app.post('/form', async (req, res)=>{
             service: 'Gmail',
             auth: {
                 user: 'rentinggo1@gmail.com',
-                pass: 'qpfirhqsxwxvxmeb'
+                pass: 'xydaugbzyfeircod'
             }
         })
 
